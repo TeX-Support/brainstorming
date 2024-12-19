@@ -158,6 +158,30 @@ Analogies: latex is the movable type of PDFs.
 
 First cover features, operation (GUI: menus, buttons, and keybinds), and general workflow. Cover the WP mindset.
 
+\underline{Advanced Features}
+
+Most WPs lack advanced features such as generating a table of contents \footnote{As shown in the next section, many WPs can actually generate a table of contents. Their ToCs, however, are basic and impede workflow, and thus are not considered advanced.}, generating lists of figures, more, and more as well as configuration of all of the above.
+
+\underline{A Hidden, Mutable State}
+
+WPs are "What You See Is What You Get" \footnote{WYSIWYG, pronounced "Wi-see-wig"} editors. What appears in the WP window will appear in your PDF: what you see in the WP is what you're always gonna get. There's no separation between input and output: the writing you put into the WP will be present in the output, whether that's the WP file itself, a generated PDF, or a screenshot of the WP window, perhaps.
+
+Because what you see is what you'll get, any characteristic of your document must be telescoped, projected, or mapped into visual form. Consider boldface styling. Boldface style is the thick version of a font; applying bold to a word makes its font thicker. Crucially, boldface must be applied /to a word/. A word processor, however, has no conception of a word. If you wish to have a word be in boldface, you can select the word by highlighting it and make it bold, often with a keybind or button. Your conception of the bold word, however, has not been mapped one-to-one to the WP: information has been lost. Specifically, your conception of the bold word relies on your conception of the word itself, and this conception in turn relies on the ability to define start and end points of a word. The WP, however, has no conception of a word, and thus cannot define its start and end points. Sure, you may have highlighted the word by starting at one letter and ending at another, but the WP doesn't know this. Your intention, of bolding that word itself (as defined by start and end points), has been lost in the projection of your conception of bolding onto the WPs visual space.
+
+This information loss leads to weird, and often annoying, behaviors. If I bold a word, for example, and then place my cursor in the middle of the word and continue typing, the new letters will remain in bold. Even if I first type a space, which should, in my conception, signify the start of a new word, the letters are bold. In fact, WPs allow you to apply bold style to things that aren't even words, even to spaces. Hopefully my explanation has been clear enough, but consider how ludicrous it is to make a space boldface.
+
+The many-to-one mapping from your conception to the visual WP environment doesn't simply cause the lost information to disappear. In fact, WPs require you to keep track of metadata about the document, which can be termed the document's "state".
+
+% As a trivial example, consider a line break. In a WP, if you hit Ret twice, you'll make two new lines, and there'll be one line of separation between your current paragraph and the previous. While it may seem obvious, this line between the paragraphs is actually the visual telescoping, or projection, of a syntactical paragraph break onto the visual, WYSIWYG WP environment. In this case, the syntactical paragraph break can be mapped, one-to-one, from syntax-space to WP WYSIWYG space: the paragraph break is simply visual separation, and because the WYSIWYG editor provides a visual representation of your document, it can fully represent the visual paragraph break without any loss of information.
+
+% For a similar example where information is lost by mapping into the WP's visual environment, consider the page break. Similar to the paragraph break, a syntactical page break provides separation from the end of the current paragraph up to the end of the page (the page break forces subsequent content to begin on the following page).
+
+All this mapping into visual space requires you to keep track of state. You have to remember if you had put a page break somewhere, and if so, where on the page the break was inserted. Or if the boldface ends at the end of a boldface word or if it applies to the space after it as well.
+
+"bold" emphasis style. When you emphasize a word with boldface, you desire that word to be bolded. The WP, however, has little, if any, conception or definition of a "word". In this visual environment
+
+Because of the WP's limitations
+
 %          3. Limits of Document Processors
 %             1. Advanced features: table of contents, list of figures, configuration of all of the above.
 %             2. Because you can't see what's going on, and the Document Processor reveals options depending on context (are you in a table, in a bold word, in an image), it can be difficult to memorize what's available. Contextual options often become associated with clicks, icons to click, menus, and in general chains of clicks and selections. As data structures, this essentially involves remembering a sequence of tasks which depend on the mutable state of the document. These mutable variables, such as the position of your cursor, what is highlighted, what is selected, etc, require cognitive effort to track, and thus require overhead that cannot be devoted to writing. LaTeX does require keeping track of things, but not mutable state; the commands, and related code, that you have to remember are immutable. Moreover, your document (e.g. PDF) is separate from your actual content (code). This separation creates less of a cognitive burden. Also, you know excactly what your content is: it's simply Unicode text, no invisible artifacts devoid of rhetorical meaning such as a "bold paragraphs" or. Because Document Processors don't define things from the bottom up in a way that the Document Preparation and Processing principles and functionalities are accessible to the user, they allow things like "bold paragraphs", headings that are only defined by font sizes, and page breaks that are inserted with C-Ret and aren't visibly signified by anything. Because DPPs don't offer a bottom-up way of building a document, they suffer from having to add features which result in typographically meaningless results, like a "bold paragraph". All this adds to state tracking ("I have to remember there's a page break here"). LaTeX is declarative. DPPs require you to memorize semantically lacking keybinds, and sequences of keybinds, to achieve typographic states that are never defined in the first place.
@@ -220,49 +244,29 @@ tex stackexchanger, overleaf.com/learn, google searches
 
 Really simple.
 
-\section{Programming Tips}%
-\label{tips}
+\section{Building Blocks}%
+\label{bbs}
 
-\subsection{Naming Convetions}%
-\label{tips.name-convs}
+\subsection{Preambles}%
+\label{bbs.preambles}
 
-\subsubsection{Sections}%
-\label{tips.name-convs.sections}
+\subsubsection{Useful Packages}%
+\label{bbs.preambles.packages}
 
-Good practices for naming sections
+\subsubsection{Homework}%
+\label{bbs.preambles.homework}
 
-\subsubsection{Labels}%
-\label{tips.name-convs.labels}
+\subsubsection{Reports}%
+\label{bbs.preambles.reports}
 
-Good practices for naming labels, e.g. \texttt{sec.subsec.subsubsec} (dot notation) or \texttt{sec:subsec::subsubsec} (colon notation).
+\paragraph{IQP}%
+\label{bbs.preambles.reports.iqp}
 
-\subsection{How To Manually Modifying Spacing}%
-\label{tips.spacing}
+\paragraph{MQP}%
+\label{bbs.preambles.reports.mqp}
 
-How to use positive and negative vspace and hspace. How to use vfill and hfill.
-
-Macros for inserting a preset amount of horizontal space, e.g. to separate answers within a box
-
-\subsection{\LaTeX\ Editing Workflow}%
-\label{workflow}
-
-Your own preamble. File templates. Homework templates. Bibliographies
-
-\section{\LaTeX\ Editors}%
-\label{latex-editors}
-
-TUI (emacs and vim), VSCode, overleaf. Find other popular ones to cover.
-
-\section{Overleaf for Collaborative Editing}%
-\label{overleaf}
-
-Don't give Overleaf tutorial (they have docs for that). We should outline how to manage group projects and collaborative writing in latex.
-
-\section{Inkscape and \LaTeX\ For Fancy Diagrams}%
-\label{inkscape-latex}
-
-\section{Custom Code Snippets}%
-\label{custom-code-snippets}
+\subsection{Tweaks}%
+\label{bbs.tweaks}
 
 We can add the code snippet then link some documentation for people to dive deeper.
 
@@ -292,5 +296,52 @@ We can add the code snippet then link some documentation for people to dive deep
   \item URL colors
   \item single space table of contents
 \end{enumerate}
+
+\subsection{Snippet Plugins}%
+\label{bbs.snippet-plugins}
+
+Vim, emacs, vscode.
+
+Naming convetions
+
+Good to have: fraction, etc.
+
+\subsection{Naming Convetions}%
+\label{bbs.name-convs}
+
+\subsubsection{Sections}%
+\label{bbs.name-convs.sections}
+
+Good practices for naming sections
+
+\subsubsection{Labels}%
+\label{bbs.name-convs.labels}
+
+Good practices for naming labels, e.g. \texttt{sec.subsec.subsubsec} (dot notation) or \texttt{sec:subsec::subsubsec} (colon notation).
+
+\subsection{How To Manually Modifying Spacing}%
+\label{bbs.spacing}
+
+How to use positive and negative vspace and hspace. How to use vfill and hfill.
+
+Macros for inserting a preset amount of horizontal space, e.g. to separate answers within a box
+
+\subsection{\LaTeX\ Editing Workflow}%
+\label{workflow}
+
+Your own preamble. File templates. Homework templates. Bibliographies
+
+\section{\LaTeX\ Editors}%
+\label{latex-editors}
+
+TUI (emacs and vim), VSCode, overleaf. Find other popular ones to cover.
+
+\section{Overleaf for Collaborative Editing}%
+\label{overleaf}
+
+Don't give Overleaf tutorial (they have docs for that). We should outline how to manage group projects and collaborative writing in latex.
+
+\section{Inkscape and \LaTeX\ For Fancy Diagrams}%
+\label{inkscape-latex}
 
 \end{document}
