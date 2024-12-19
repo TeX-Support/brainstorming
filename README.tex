@@ -1,0 +1,296 @@
+\documentclass[12pt]{article}
+\usepackage[printonlyused,withpage]{acronym} % acronyms
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[page,title,toc]{appendix} % appendix
+\usepackage{array} % tables (?)
+\usepackage{bbold} % \mathbb
+\usepackage[backend=biber, style=apa]{biblatex} % bibliography
+\usepackage{bm} % bold math
+\usepackage{caption} % better captioning and figure numbering (?)
+\usepackage{changepage} % some landscape pages
+\usepackage{csquotes} % \blockquote
+\usepackage{enumitem} % control spacing
+\usepackage{etoolbox} % for a macro (?)
+\usepackage{fancyhdr}				% For fancy header/footer
+\usepackage{float}      % use the [H] option for positioning
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage[hang,flushmargin]{footmisc} % don't indent footnotes
+\usepackage{gensymb} % \degree symbol
+\usepackage{glossaries} % glossary
+\usepackage{graphicx}				% For including figure/image
+\usepackage[margin=1.0in,includehead,includefoot]{geometry}		% For setting margins
+\usepackage{import}    % \incfig
+\usepackage[iso,american]{isodate}
+\usepackage{makecell}  % multi-row table cells
+%\usepackage{mathptmx}  % make math Times New Roman
+%\usepackage{minted}    % code styling
+\usepackage{pdflscape} % make \incfig to landscape
+\usepackage{pdfpages} % \includepdf
+%\usepackage{pgffor} % iterate over the modular files to import their labels
+\usepackage{pgfplots} % bar chart
+\usepackage{ragged2e} % \raggedright
+\usepackage{setspace} % {single,one-half}space \doublespacing
+\usepackage{soul} % underline across line breaks
+\usepackage{svg}
+\usepackage{textcomp} % textcomp to get rid of gensymb warnings
+%\usepackage{times} % Times New Roman, only pdflatex
+\usepackage{transparent} % \incfig (breaks pgffor)
+\usepackage[normalem]{ulem} % allow \smash of underlines
+\usepackage{vcell} % vertical writing in table cells (?)
+\usepackage{wrapfig} % \incfig
+\usepackage{xifthen} % \incfig
+\usepackage{xparse} % ?
+\usepackage{xr} % ?
+
+% hYpErReF mUsT cOmE lAsT
+\usepackage[hidelinks]{hyperref} % \href{url}{text}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,filecolor=black,citecolor=black}
+
+% svg and Inkscape's pdf_tex
+\newcommand{\incfig}[2]{
+	\def\svgwidth{#1\columnwidth}
+	\import{./}{#2.pdf_tex}
+}
+
+% Bibliography
+%\addbibresource{}
+
+% Font size reminder
+% \tiny \small \normalsize \large \Large \Huge
+%\setmainfont{Times New Roman}
+\setmonofont{Mononoki Nerd Font Mono}[Scale=MatchLowercase]
+
+%%% Macros
+% Horizontal Spacing
+\newcommand\hs{\hspace{1cm}}
+\newcommand\hhs{\hspace{0.5cm}}
+% Singlespacing in certain environments: \ssInEnv{environment, font=\normalsize}
+\newcommand{\ssInEnv}[2][\normalsize]{\BeforeBeginEnvironment{#2}{\begin{singlespace*}{#1}}\AfterEndEnvironment{#2}{\end{singlespace*}}}
+% Fancy header and footer for homeworks
+\newcommand\hwheadfoot{
+\pagestyle{fancy}
+\fancyhead[LO,L]{Lorenzo Hess}
+\fancyhead[CO,C]{CLASS: Homework NUMBER} % TODO
+\fancyhead[RO,R]{\today} % TODO
+%\fancyfoot[LO,L]{}
+\fancyfoot[CO,C]{\thepage}
+%\fancyfoot[RO,R]{}
+\topmargin=-0.75in
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}}
+
+% Homework problems with arbitrary numbers without worrying about section formatting and counters
+\newcommand{\problemSection}[1]{ % Args = section number
+\noindent\Large\textbf{Section #1}
+}
+\newcommand{\problem}[1]{ % Args = number
+\noindent\large\textbf{Problem #1}
+}
+
+% Volume symbol (heat transfer)
+\newcommand{\volume}{{\ooalign{\hfil$V$\hfil\cr\kern0.08em--\hfil\cr}}}
+
+% Table of Contents tweaks
+% Singlespacing
+\let\oldToC\tableofcontents
+\renewcommand{\tableofcontents}{\begin{singlespace}\oldToC\end{singlespace}}
+% Include subsubsections
+\setcounter{tocdepth}{3}
+
+% Spacing
+\singlespacing
+\ssInEnv{itemize}
+\ssInEnv{enumerate}
+\ssInEnv{tabular}
+\setlist{listparindent=\parindent, % indent paragraphs under \item
+  nolistsep} % no spacing between list items
+
+% Smash underlines
+\let\oldunderline\underline
+\renewcommand{\underline}[1]{\oldunderline{\smash{#1}}}
+\setlength\ULdepth{1.5pt}
+
+% Minted code styling
+%\usemintedstyle{friendly}
+%\setminted[octave]{fontsize=\scriptsize, breaklines=true, breakanywhere=true, linenos=true, numbersep=6pt, stripnl=true, baselinestretch=1}
+%\setminted[text]{fontsize=\scriptsize, breaklines=true, breakanywhere=true, linenos=false, numbersep=6pt, stripnl=true, baselinestretch=1}
+
+\author{Lorenzo Hess}
+\date{\today}
+\title{``TeX'' Support Proposal}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Introduction}%
+\label{intro}
+
+This document outlines ideas for a comprehensive approach to \LaTeX\ advocacy, covering everything from pro-\LaTeX\ talking points, arguments against word processors (WPs), solutions for group work in \LaTeX, and \LaTeX\ code snippets, including full preambles and examples. While any individual could make use of this advocacy material, a group or club would be ideal in terms of providing additional resources and labor. Such a group could be called ``TeX Support'', so I've used that in the title of this document \footnote{Thanks to Keegan Kuhn for this pun.}.
+
+\section{What's Our Agenda?}%
+\label{agenda}
+
+We like \LaTeX, and we think it's better for preparing documents, in most cases, than Word Processors (WPs). We're also pragmatic, and recognize that many people haven't used \LaTeX\ or may have felt frustrated when they have. Many \LaTeX\ tutorials indeed fail to enumerate and provide what we see as essential foundations for learning, appreciating, and enjoying \LaTeX\ document preparation. For example, many tutorials characterize \LaTeX's utility in terms of what it is good at, such as typesetting math or providing robust label and reference management. They fail, however, to provide a comprehensive feature comparison between \LaTeX\ and WPs that would make clear \LaTeX 's superiority. Tutorials also generally fail to fully compare the \LaTeX\ and WP mindsets, and thus fail to help users realize how WPs hinder writing. Finally, tutorials fail to provide essential tools that make \LaTeX\ editing less tedious, from code templates like preambles to software like Detexify.
+
+We have two general goals: 1) present a comparative, serious, and evidence-based argument for when, and why, individuals and groups should use \LaTeX\ instead of WPs; and 2) to provide code templates, code snippets, and guides for individuals and groups to not only get started with \LaTeX, but use it to its full potential.
+
+We're not here to evangelize. WPs do have certain advantages over \LaTeX (see the feature comparison in Section X), and it's a free country (and even freer Internet): we don't care what software you prefer or use. We do believe that \LaTeX, combined with a proper editor and editing workflow, usually makes writing and formatting faster and better.
+
+\section{What is \LaTeX?}%
+\label{what-is}
+
+What is LaTeX? What is a markup language? Do I need to know programming? Is LaTeX programming?
+
+You write instructions (i.e. code) to tell a latex compiler how to prepare your PDF, i.e. how to format, structure, and generally manipulate text, images, tables, etc to make your PDF.
+
+Analogies: latex is the movable type of PDFs.
+
+\section{Feature Comparison}%
+\label{feat-comp}
+
+\subsection{The General WP}%
+\label{feat-comp.general-wp}
+
+First cover features, operation (GUI: menus, buttons, and keybinds), and general workflow. Cover the WP mindset.
+
+%          3. Limits of Document Processors
+%             1. Advanced features: table of contents, list of figures, configuration of all of the above.
+%             2. Because you can't see what's going on, and the Document Processor reveals options depending on context (are you in a table, in a bold word, in an image), it can be difficult to memorize what's available. Contextual options often become associated with clicks, icons to click, menus, and in general chains of clicks and selections. As data structures, this essentially involves remembering a sequence of tasks which depend on the mutable state of the document. These mutable variables, such as the position of your cursor, what is highlighted, what is selected, etc, require cognitive effort to track, and thus require overhead that cannot be devoted to writing. LaTeX does require keeping track of things, but not mutable state; the commands, and related code, that you have to remember are immutable. Moreover, your document (e.g. PDF) is separate from your actual content (code). This separation creates less of a cognitive burden. Also, you know excactly what your content is: it's simply Unicode text, no invisible artifacts devoid of rhetorical meaning such as a "bold paragraphs" or. Because Document Processors don't define things from the bottom up in a way that the Document Preparation and Processing principles and functionalities are accessible to the user, they allow things like "bold paragraphs", headings that are only defined by font sizes, and page breaks that are inserted with C-Ret and aren't visibly signified by anything. Because DPPs don't offer a bottom-up way of building a document, they suffer from having to add features which result in typographically meaningless results, like a "bold paragraph". All this adds to state tracking ("I have to remember there's a page break here"). LaTeX is declarative. DPPs require you to memorize semantically lacking keybinds, and sequences of keybinds, to achieve typographic states that are never defined in the first place.
+
+%                Consider this example where I use Ret and Del to move this paragraph. Or this other similar example. There's no documentation (verify this) on what state my paragraph is in, e.g. is it "twice indented", or "half indented", or "first-line indented", and there's no documentation on what keybinds to use to achieve these states. Google Drive forces you to memorize essentially arbitrary keybinds, and their sequences. We don't use the term "forces" to be dramatic: there's no other option, and these features are a direct result of their deliberate design and documentation choices.
+
+%                What does it even mean to have a cursor next to an image in a DP? In LaTeX, figures are floats, not text.
+
+%                Google Drive's ToC allows for different fonts. It allows you to actually change it, but those changes don't get reflected in the respective headings (not that LaTeX allows this-- it's just a bad design choice). It also allows comments, but the comments disappear when you generate the ToC. Its configuration is minimal: show page numbers, show tab leader (.....), and heading level -> indentation distance; not even changing separation of tab leader periods is allowed.
+
+\subsection{\LaTeX}%
+\label{feat-comp.latex}
+
+%             1. Unique features
+%                1. Math typesetting
+%                2. Programmatic code highlighting
+%                3. Labels and references
+
+First cover features, operation (TUI: writing code and compiling), and general workflow. Cover the latex mindset.
+
+\subsubsection{Don't Switch to \LaTeX\ If...}%
+\label{feat-comp.latex.don't-switch}
+
+Don't switch to LaTeX if
+
+1. You're not willing to learn the minimum necessary for your needs (might just be math equations, or might extend to bibliographies).
+
+2. All this being said, LaTeX is just text (another benefit!). If you've started a project but can't finish it in LaTeX, you can always copy/paste it somewhere else, or even export it directly to docx with tools like Pandoc (won't export everything perfectly).
+
+\subsection{Table of Features}%
+\label{feat-comp.table}
+
+We should quantify as many features as possible and present them in a table for a comprehensive feature comparison.
+
+\subsubsection{\LaTeX\ vs. General WP}%
+\label{feat-comp.table.latex-vs-wp}
+
+\subsubsection{Overleaf vs. Google Drive vs. Microsoft Onedrive}%
+\label{feat-comp.table.collab-solns}
+
+\section{How Tos}%
+\label{how-to}
+
+\subsection{How to Read Error Messages}%
+\label{how-to.error-messages}
+
+\subsection{How to Debug \LaTeX\ Code}%
+\label{how-to.debug}
+
+\subsection{How to Use \LaTeX\ Package Documentation}%
+\label{how-to.package-docs}
+
+\subsection{How to Find Help}%
+\label{how-to.help}
+
+tex stackexchanger, overleaf.com/learn, google searches
+
+\subsection{How to Use Detexify}%
+\label{how-to.detexify}
+
+Really simple.
+
+\section{Programming Tips}%
+\label{tips}
+
+\subsection{Naming Convetions}%
+\label{tips.name-convs}
+
+\subsubsection{Sections}%
+\label{tips.name-convs.sections}
+
+Good practices for naming sections
+
+\subsubsection{Labels}%
+\label{tips.name-convs.labels}
+
+Good practices for naming labels, e.g. \texttt{sec.subsec.subsubsec} (dot notation) or \texttt{sec:subsec::subsubsec} (colon notation).
+
+\subsection{How To Manually Modifying Spacing}%
+\label{tips.spacing}
+
+How to use positive and negative vspace and hspace. How to use vfill and hfill.
+
+Macros for inserting a preset amount of horizontal space, e.g. to separate answers within a box
+
+\subsection{\LaTeX\ Editing Workflow}%
+\label{workflow}
+
+Your own preamble. File templates. Homework templates. Bibliographies
+
+\section{\LaTeX\ Editors}%
+\label{latex-editors}
+
+TUI (emacs and vim), VSCode, overleaf. Find other popular ones to cover.
+
+\section{Overleaf for Collaborative Editing}%
+\label{overleaf}
+
+Don't give Overleaf tutorial (they have docs for that). We should outline how to manage group projects and collaborative writing in latex.
+
+\section{Inkscape and \LaTeX\ For Fancy Diagrams}%
+\label{inkscape-latex}
+
+\section{Custom Code Snippets}%
+\label{custom-code-snippets}
+
+We can add the code snippet then link some documentation for people to dive deeper.
+
+\begin{enumerate}
+  \item Header and footer for nice homework.
+  \item Two figures side by side.
+  \item Appendices
+  \item Bibliography
+  \item acronyms
+  \item landscape pages
+  \item block quotes
+  \item list spacing
+  \item actually put floats where you want them
+  \item different fonts and math fonts
+  \item footnotes
+  \item glossaries
+  \item page margins
+  \item date formatting
+  \item multi-row table cells
+  \item code styling
+  \item include PDF pages
+  \item charts and other graphs
+  \item justification
+  \item line spacing
+  \item reduce vertical space between word and underline
+  \item vertical table cells
+  \item URL colors
+  \item single space table of contents
+\end{enumerate}
+
+\end{document}
