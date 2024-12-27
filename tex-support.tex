@@ -102,9 +102,9 @@
 
 % Spacing
 \singlespacing
-\ssInEnv{itemize}
-\ssInEnv{enumerate}
-\ssInEnv{tabular}
+% \ssInEnv{itemize}
+% \ssInEnv{enumerate}
+% \ssInEnv{tabular}
 \setlist{listparindent=\parindent, % indent paragraphs under \item
   nolistsep} % no spacing between list items
 
@@ -195,10 +195,90 @@ Because of the WP's limitations
 \subsection{\LaTeX}%
 \label{feat-comp.latex}
 
+Quoted from https://blog.orvium.io/latex-over-word/:
+\begin{enumerate}
+  \item LaTeX is specifically designed to produce high-quality typesetting, which makes your documents look professional and polished
+  \item since you’re essentially writing code, you can meticulously fine-tune your document to look exactly the way you want it or in accordance with the highly specific requirements some journals have.
+  \item LaTeX is optimized for minimal resource utilization. This allows researchers to work more efficiently on large documents with many equations, figures, images, and cross-references (think dissertations, books, or studies).
+  \item LaTeX also generates a table of contents, a list of figures, and a complete list of references which you can manually edit in code
+  \item the \\input and \\include commands allow you to split up sources in a controlled way, effectively making large documents into smaller files that can be managed separately.
+  \item Since LaTeX operates with plain text files, the level of control you have as a user is beyond what traditional word processors can offer. This can prove very handy when collaborating with multiple authors on a big project, as it allows you to use tools like Git or SVN to implement version control and track changes.
+  \item Anything that prominently features equations, tables, figures, or other designs is best completed via LaTeX.
+  \item Academic dissertations and doctoral theses - from the reference system to the automatic and efficient table of contents, LaTeX makes working on gigantic projects such as these very easy. By comparison, researchers using Word frequently save chapters in separate documents to keep the software from lagging up or crashing and thereby losing their work.
+\end{enumerate}
+
+Regarding 1, go into what typsetting actually is, i.e. good-looking justification, text wrapping, math, equations.
+
+Compare Overleaf opening ``10-page'' worth of latex code with google docs, onedrive 10-page document.\\
+
+Quoted from https://www.baeldung.com/cs/latex-vs-word-main-differences:
+\begin{enumerate}
+  \item it serves as a broad category encompassing all word-processing software that immediately displays the final output. Having this characteristic, Word is usually called a What You See Is What You Get (WYSIWYG) editor rather than requiring initial file processing.
+  \item On the other hand, LaTeX’s user interface is distinct from conventional word processors, as it relies on a markup language for document creation rather than a graphical interface
+  \item Word supports real-time co-authoring, where multiple users can work on the same document simultaneously without conflicts.\\
+\end{enumerate}
+
+Quoted from https://tex.stackexchange.com/questions/110133/visual-comparison-between-latex-and-word-output-hyphenation-typesetting-ligat:
+\begin{enumerate}
+  \item how many unnecessary double paces or blank lines have any big Word document of an average user? This mistakes are hardly noticed and corrected and spoiled the format, but simply does not exist in LaTeX.
+\end{enumerate}
+
+Regarding 1, maybe Word can highlight two spaces to show an error, and you can just delete the extra space. What latex offers, however, is the ability to forget about these typos. You can focus on your writing, rather than these minute procedural details.\\
+
+Quoted from https://nitens.org/w/latex/:
+\begin{enumerate}
+  \item Popular word processors either lack support for kerning tables or disable kerning by default
+  \item Most word processors create fake small capitals by adjusting the size of capitals
+  \item A good typesetting programme should always use contextual intelligence and substitution tables to determine whether ligatures are needed
+        \item Readability results not only from a good selection of typefaces, but also from a correct distribution of characters and whitespace per line. To attain this goal, most WYSIWYG word processors use relatively dumb justification/hyphenation procedures
+\end{enumerate}
+
+Regarding all these, verify for newer WP versions (including cloud):
+
+Quotes from https://www.andy-roberts.net/latex/benefits/:
+\begin{enumerate}
+  \item LaTeX is essentially a markup language. Content is written in plain text and can be annotated with various 'commands' that describe how certain elements should be displayed. The LaTeX interpreter reads in a LaTeX marked-up file, renders the content into a document and dumps it a new file. Therefore, it's not an interactive system that is the de-facto method for document creation nowadays.
+  \item You can get LaTeX to do just about anything you can think of! Over the years, an overwhelming selection of packages to extend its potential and macros that can simplify complex tasks have come into being, most of which are freely available on CTAN
+  \item LaTeX's main users are within academia and research institutions
+  \item There are other crazy packages that you can install which allow you to typeset music scores, chessboards and cross-words! CTAN is the main repository of these resources. Most are well documented and as you can imagine, with LaTeX being around for so long, the number of extensions is vast. The chances are, if you're struggling to do a task, someone will have undoubtedly written a package to solve it easily!
+  \item Even with simple documents, you can quickly become frustrated by Word's rather unintelligent interference. The hours that are wasted trying to position that image which you know will fit at the bottom of the page, but Word refuses to put it there! How many can relate to this experience? You have your 30 page document with text, tables and images. You just spent the evening getting it formatted nicely - all your figures in the right place and then you notice that one of your paragraphs isn't clear enough. You add one sentence, which then pushes an image on to the next page, leaving a massive gap at the bottom of that page where your image once was. This then daisy-chains down, knocking other tables and images out of place all the way to the end of your document! It's a real laugh. Fortunately, LaTeX is much more clever in this respect and positions your images and tables with a lot of common sense. So, if you want your image to appear at the bottom of a given page, it'll stay there!
+
+        Whilst LaTeX makes decent typesetting decisions for you, if you want to, you can have total control over the presentation of your document.
+  \item It's difficult to disagree that the output from LaTeX is far superior to what Word can produce. This is emphasised greatest when it comes to documents with high mathematical content, which is a major strength for LaTeX. It also has much better kerning, hyphenation and justification algorithms that simply make the output far more professional than what any word processor. Its algorithms for laying out text are more sophisticated and extremely fine-grained. For example, the accuracy is so high because it uses a measurement known as a scaled point which translates as 100th of the wavelength of natural light!
+
+        LaTeX works with the concept of niceness (well, I suppose technically it's badness - which it works to minimise). LaTeX has a large set of metrics that it evaluates against when generating your document. It experiments with various permutations of parameters and determines the one which gives the "nicest" output. It can take the time to do this because it isn't interactive. Word processors don't have the computational resources available (yet) to carry out the equivalent calculations and still remain interactive. Also, many people forget that typesetting is actually a professional skill - people train for years to learn how to layout publications. Yet, as soon as you open a word processor, you go about committing typesetting sins all the way. Typesetters know for example that its easier to read sentences that are approximately 66 characters wide. Have a look in your books and count the letters! Also, why do newspapers and magazines have narrow columns? But, the default layout of a word processor gives an average of 100 words per line. I suppose many people don't mind, but you would notice if you read a lot of large documents.
+  \item One of the reasons why perhaps so many people struggle with Word when creating large documents, is because it is prone to crashes. 'Document recovery' is now a high ranking feature of Word. I'm sure people would prefer if MS would just make their software more stable! ... Because LaTeX is so mature - and developed by extremely clever programmers - bugs are negligible. And even if it were buggy, then there is no risk of you ever losing your original source text. Where as with Word, almost any tool within its integrated environment is capable of corrupting your file if it causes a crash.
+  \item Word may have the advantage of a GUI which is good for beginners. It reduces the cognitive load as it's a case of recognition verses recall.
+  \item Word can be extended using its in-built scripting language. It also has document management features to help with large documents. As already mentioned, it has styles that can ensure manageable and consistent presentation. Yet very few people seem to take advantage of them. This is especially worsened by UI improvements that mean Word will hide features that you do not use, which makes it more difficult to remember what Word can actually do. \label{ui}
+  \item Quite simply, anyone who is writing non-trivial documents and is tired of being let down by the performance of the current crop of word processors. If you are in academia, you really ought to be using it! Anybody writing anything maths related will not find a richer and better quality system. For example, even WikiPedia use LaTeX for rendering any formulas that appear on their site.
+  \item LaTeX isn't for people who are too lazy or dislike change! I personally found the investment paid off because LaTeX allows me to produce my documents at a greater pace. I know that the enterprise will not be interested as Word is so ingrained, even though their business reports would look so much nicer. Their loss! For everyone else, it's time to give it a fair try, just so that you compare and contrast, then decide which does the job best for your needs.
+\end{enumerate}
+
+Regarding \ref{ui}, verify this last sentence.
+
 %             1. Unique features
 %                1. Math typesetting
 %                2. Programmatic code highlighting
 %                3. Labels and references
+
+Quoted from https://tug.org/texshowcase/:
+\begin{enumerate}
+  \item You can compare a Word Processor (e.g. MS Word) setup to a TeX setup as a Camper (or RV) versus having a house and a car. The Camper is for everything: you can live in it, you can drive with it and you can look at it. The Word Processor is like a Camper: it does editing, formatting/typesetting, and displaying. It is not excellent at any of these functions, but the combination is pretty neat. In a TeX setup, these functions are separated, like with having a house and a car.
+  \item Some things are, however, difficult to do in TeX. Mostly these are the kind of things where you want very fine-grained control over exact positioning of images, wrapping around these images, etc. You can do this in TeX, but it is often (very) cumbersome to get it right and changes may be a lot of work.\\
+\end{enumerate}
+
+Quoted from https://tex.stackexchange.com/questions/94889/how-can-i-explain-the-meaning-of-latex-to-my-grandma:
+\begin{enumerate}
+  \item LaTeX is to a book what a set of blueprints is to a building.
+  \item The LaTeX user is the architect that, designs the blueprint, for the computer and printer to build... Any trade-y can throw together a shed without any kinda of plan, but a beautiful building requires blueprints
+  \item It does this [movable type] but it uses a computer and so requires less manual labour.
+  \item https://tex.stackexchange.com/a/94910 (has photos)\\
+\end{enumerate}
+
+Quoted from
+
+
+\vspace{2cm}
 
 First cover features, operation (TUI: writing code and compiling), and general workflow. Cover the latex mindset.
 
