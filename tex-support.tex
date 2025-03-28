@@ -424,4 +424,62 @@ Don't give Overleaf tutorial (they have docs for that). We should outline how to
 \section{Inkscape and \LaTeX\ For Fancy Diagrams}%
 \label{inkscape-latex}
 
+\section{Tips}%
+
+Use \% between lines to break up paragraphs in the source but not create a line break in the output.
+
+% Old PDF + prototype source writing paradigm
+Having source in one window and previous PDF can be super helpful. Let's say you have variable a = f(b,c,d) and you need to substitute it into equation $y = a^2 + e^{-a/\sqrt{a}}$. Preserving the original PDF allows you to view the y(a) equation in its old form, with only 'a', as you insert f(b,c,d) into the latex source. You can in fact simply copy the f(b,c,d) and paste it into the y(a) equation in the place of every appearance of 'a'. Because the PDF is preserved, you don't have to remember what y(a) is as you insert in f(b,c,d). This means that while your source code will reflect some intermediate equation y(a,b,c,d), your PDF will still reflect y(a), and you won't e.g. lose track of which 'a's you've replaced or not. Also, before recompiling the PDF to reflect y(b,c,d) you can use the old y(a) in the PDF to double check that you've actually inserted f(b,c,d) into y(a) in the correct places in the source.
+
+We find this paradigm of old PDF + prototyped source to be useful in other fields, such as writing papers. While retaining an old version of a sentence in your PDF you can experiment with a new, reworded version, in your source.
+
+\section{Working on big projects (mqp, iqp, thesis)}%
+
+Things to leave for last:
+\begin{enumerate}
+  \item diagrams. A final report level diagram will take 30 minutes, if you pay attention to details like exact positioning of the rendered latex
+  \item structural formatting, including whitespace and figure placement. if you do this last, there's no chance that you'll add some paragraph somewhere which ends up shifting your figure and having you redo all the working of shifting it back where you prefer
+  \item citations
+  \item enabling double spacing. you can try this mid-way to gauge how long your paper is, but it'll be easier to write if you can see more of the text (this isn't a latex-specific suggestion, more about writing in general)
+  \item revising paragraphs so that the last sentences doesn't bleed 1 or 2 words over onto the next line. note that you can potentially regain a lot of vertical space this way.
+  \item acronyms. you don't need to acro wrap each use, only the first few (in each chapter?)
+\end{enumerate}
+
+Latex makes you more attuned to formatting details because it makes things look high quality, so small things that are low quality stand out. i.e. it sets a higher standard than WPs, so you're more likely to correct things in latex than WPs cause they'll stand out more in latex. And the opposite is true: the higher real-time cognitive load of word processors makes you less attuned to detail. Because word allows impossible details like a ``bold space character'', you'll be in a mindset to not consider the details as much. Also, because word makes it difficult to do things, like move an image to the exact place you want it, your mind will be closed off to fine-tuning your document. Again, because WPs limit functionality that contributes to detail, e.g. easy toc, list of figures, captions, references, your mind will be closed off to thinking about fine-tuning your document.
+
+programmatic find and replace with acronyms for things you don't know what to call yet.
+
+
+latex is nice because it compresses certain things, like a full page image, into several lines of text. so if you scroll up in WP to the previous line, you might lose context. but in latex you just scroll up a tiny bit in the source, or even don't have to scroll up at all, and you can see the previous line.
+
+
+Big Projects
+\begin{enumerate}
+  \item follow the template and folder hierarchy we provide
+  \item label chapter in CAPS
+  \item use something like Lorenzo's Elisp \texttt{my-autofill-label} to help with really long labels
+  \item Use this snippet to help lsp find refs in other files:
+
+        \%\%\% Local Variables:
+
+        \%\%\% mode: latex
+
+        \%\%\% TeX-master: "../report.tex"
+
+        \%\%\% End:
+  \item tell people to add a find-replace pattern, like ``(cite)'' when the want to cite someone. certainly they should at least put a basic in-text citation or at least identifier, i.e. (Knuth, pg 18). But find-replace patterns can help you insert citations quicker
+\end{enumerate}
+
+
+
+Copying from google drive in big project
+\begin{enumerate}
+  \item copy paragraph by paragraph
+  \item replace acronyms, quotes, other artifacts etc at the end of final draft
+  \item you'll have a gray area where people are still updating the cloud doc and you're copying over changes manually
+  \item you can ask people to comment or highlight any changes to make it clear if you don't need to recopy a section
+  \item I'd recommend revising your own work directly in the tex
+\end{enumerate}
+
+
 \end{document}

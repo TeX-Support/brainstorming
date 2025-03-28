@@ -16,3 +16,11 @@ Some helpful links on LaTeX and WPs:
 12. https://oestrem.com/thingstwice/2007/05/latex-vs-word-vs-writer/comment-page-1/
 13. https://www.artkavanagh.ie/LaTeX-and-Word.html
 14. https://www.tug.org/texshowcase/leaflet.pdf
+
+## Videos
+
+delete-more-than-highlighted.mkv: shows that highlighting 1 word and then deleting it also deletes the subsequent space in Google Drive. This adds to overhead to remember.
+
+## Notes
+
+gdrive outline not resizable: the google drive Outline table of contents menu on the left is not resizable. Thus, when headings are long, they are hidden, making the Outline less usable.
